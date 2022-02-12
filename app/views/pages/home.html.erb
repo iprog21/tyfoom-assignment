@@ -1,0 +1,28 @@
+<% if admin_signed_in? %>
+<%= link_to 'Go to companies', companies_path %>
+<% end %>
+
+<% if user_signed_in? %>
+<table>
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.name %></td>
+        <td>
+          <% if !current_user.access_token.present? || current_user.company_id != company.id %>
+            <%= link_to 'Provision', provision_company_path(company, user_id: current_user.id), method: :post, data: { turbolinks: false } %> 
+          <% else %>
+            PROVISIONED
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

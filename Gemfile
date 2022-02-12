@@ -63,3 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # additional gems
 gem 'devise'
+gem "doorkeeper", "~> 5.5"
+gem 'oauth2'
+gem 'spawnling', '~>2.1'

@@ -11,5 +11,19 @@
 
   <body>
     <%= yield %>
+    <hr>
+    <% if user_signed_in? %>
+     <span>Welcome user <%= current_user.email %></span>
+     <%= link_to "Logout", destroy_user_session_path, method: :delete%>
+    <% else %>
+     <%= link_to "Login as user", new_user_session_path if !current_admin %>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <span>Welcome Admin | </span>
+     <%= link_to "Logout", destroy_admin_session_path, method: :delete%>
+    <% else %>
+     <%= link_to "Login as admin", new_admin_session_path if !current_user %>
+    <% end %>
   </body>
 </html>
